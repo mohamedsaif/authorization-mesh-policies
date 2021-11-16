@@ -1,0 +1,12 @@
+{
+    "policy_types": [
+        {
+            "name": "Platform",
+            "scope": "IT"
+        },
+        {
+            "name": "Service",
+            "scope": "Business"
+        }
+    ]
+}
