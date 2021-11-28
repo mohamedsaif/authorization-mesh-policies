@@ -21,6 +21,7 @@
 # with different inputs.
 
 package app.abac
+import data.service.abac
 
 default allow = false
 
