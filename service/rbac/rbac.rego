@@ -19,7 +19,7 @@
 
 package app.rbac
 # import data
-import service/rbac/data.json
+import service/rbac
 # By default, deny requests.
 default allow = false
 
