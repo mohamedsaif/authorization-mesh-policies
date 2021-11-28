@@ -41,6 +41,12 @@
             "age": 1,
             "breed": "fictitious",
             "name": "cheshire"
+        },
+        "cow1": {
+            "adopted": false,
+            "age": 1,
+            "breed": "fictitious",
+            "name": "moww"
         }
     }
 }
