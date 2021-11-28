@@ -25,7 +25,7 @@ default allow = false
 
 # Allow super admin to do anything.
 allow {
-	input.user == "mosaif"
+	input.user == "mo"
 }
 
 # Allow admins to do anything.
