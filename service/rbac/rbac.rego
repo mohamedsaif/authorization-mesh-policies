@@ -23,6 +23,11 @@ package app.rbac
 # By default, deny requests.
 default allow = false
 
+# Allow super admin to do anything.
+allow {
+	input.user == "mosaif"
+}
+
 # Allow admins to do anything.
 allow {
 	user_is_admin
