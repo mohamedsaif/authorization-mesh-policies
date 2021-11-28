@@ -15,6 +15,10 @@
         "dave": {
             "tenure": 5,
             "title": "customer"
+        },
+        "mo": {
+            "tenure": 50,
+            "title": "owner"
         }
     },
     "pet_attributes": {
