@@ -8,5 +8,13 @@
             "name": "Service",
             "scope": "Business"
         }
-    ]
+    ],
+    "admin_users": {
+        "super": {
+            "roles": [
+                "super-admin"
+            ],
+            "name": "global-admin"
+        }
+    }
 }
