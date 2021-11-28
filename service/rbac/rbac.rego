@@ -18,7 +18,7 @@
 #	* Rego Iteration: https://www.openpolicyagent.org/docs/latest/#iteration
 
 package app.rbac
-# import data
+import data.service.rbac
 
 # By default, deny requests.
 default allow = false
@@ -53,7 +53,7 @@ allow {
 	input.type == permission.type
     
     # unless user location is outside US
-    country := data.service.rbac.users[input.user]["location"]["country"]
+    country := users[input.user]["location"]["country"]
     country == "US"
 }
 
@@ -64,7 +64,7 @@ user_is_admin {
 	some i
 
 	# "admin" is the `i`-th element in the user->role mappings for the identified user.
-	data.service.rbac.users[input.user]["roles"][i] == "admin"
+	users[input.user]["roles"][i] == "admin"
 }
 
 # user_is_granted is a set of permissions for the user identified in the request.
@@ -73,8 +73,8 @@ user_is_granted[permission] {
 	some i, j
 
 	# `role` assigned an element of the user_roles for this user...
-	role := data.service.rbac.users[input.user]["roles"][i]
+	role := users[input.user]["roles"][i]
 
 	# `permission` assigned a single permission from the permissions list for 'role'...
-	permission := data.service.rbac.role_permissions[role][j]
+	permission := role_permissions[role][j]
 }
