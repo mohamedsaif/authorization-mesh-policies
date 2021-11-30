@@ -18,6 +18,9 @@
 #	* Rego Iteration: https://www.openpolicyagent.org/docs/latest/#iteration
 
 package app.rbac
+
+import input.attributes.request.http as http_request
+import data.utils
 import data.service.rbac
 
 # By default, deny requests.
