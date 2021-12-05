@@ -1,6 +1,6 @@
 # Attribute-based Access Control (ABAC)
 # -------------------------------------
-# Version 0.1.0
+# Version 0.2.0 ADO
 # This example implements ABAC for a Pet Store API. The Pet Store API allows
 # users to look at pets, adopt them, update their stats, and so on. The policy
 # controls which users can perform actions on which resources. The policy implements
@@ -9,7 +9,7 @@
 #
 # This example shows how to:
 #
-#	* Implement ABAC using Rego that leverages external data.
+#	* Implement ABAC using Rego that leverages external 
 #	* Define helper rules that provide useful abstractions (e.g., `user_is_senior`).
 #
 # For more information see:
@@ -21,9 +21,14 @@
 # with different inputs.
 
 package app.abac
-import data.service.abac
+
+import data.service.abac as context_data
 
 default allow = false
+
+allow {
+	input.user == "admin"
+}
 
 allow {
 	user_is_owner
@@ -47,19 +52,19 @@ allow {
 }
 
 user_is_owner {
-	data.user_attributes[input.user].title == "owner"
+	context_data.user_attributes[input.user].title == "owner"
 }
 
 user_is_employee {
-	data.user_attributes[input.user].title == "employee"
+	context_data.user_attributes[input.user].title == "employee"
 }
 
 user_is_customer {
-	data.user_attributes[input.user].title == "customer"
+	context_data.user_attributes[input.user].title == "customer"
 }
 
 user_is_senior {
-	data.user_attributes[input.user].tenure > 8
+	context_data.user_attributes[input.user].tenure > 8
 }
 
 action_is_read {
@@ -71,5 +76,5 @@ action_is_update {
 }
 
 pet_is_adopted {
-	data.pet_attributes[input.resource].adopted == true
+	context_data.pet_attributes[input.resource].adopted == true
 }

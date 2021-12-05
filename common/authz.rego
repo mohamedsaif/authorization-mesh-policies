@@ -1,6 +1,6 @@
 # Role-based Access Control (RBAC)
 # --------------------------------
-# Version 0.1.0
+# Version 0.2.0 ADO
 # This example defines an RBAC model for a Pet Store API. The Pet Store API allows
 # users to look at pets, adopt them, update their stats, and so on. The policy
 # controls which users can perform actions on which resources. The policy implements
@@ -17,9 +17,9 @@
 #	* Rego comparison to other systems: https://www.openpolicyagent.org/docs/latest/comparison-to-other-systems/
 #	* Rego Iteration: https://www.openpolicyagent.org/docs/latest/#iteration
 
-package authz.default
+package common.authz
 
-import data.default
+import data.common as context_data
 
 # By default, deny requests.
 default allow = false
@@ -36,5 +36,5 @@ user_is_admin {
 	some i
 
 	# "admin" is the `i`-th element in the user->role mappings for the identified user.
-	data.users[input.user]["roles"][i] == "super-admin"
+	context_data.admin_users[input.user]["roles"][i] == "super-admin"
 }
